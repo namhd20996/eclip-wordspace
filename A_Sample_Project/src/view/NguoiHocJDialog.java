@@ -1,0 +1,532 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import java.awt.Font;
+import java.awt.Point;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.UIManager;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import controller.NguoiHocJDialogCTL;
+import dao.NguoiHocDAO;
+import dao.NhanVienDAO;
+import lib.Auth;
+import lib.DataValidator;
+import lib.MsgBox;
+import lib.XDate;
+import model.NguoiHocModel;
+import model.NhanVienModel;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
+import javax.swing.SwingConstants;
+import javax.swing.border.CompoundBorder;
+
+public class NguoiHocJDialog extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JButton btnFirst;
+	private JTextField textField_MaNguoiHoc;
+	private JTextField textField_HoTen;
+	private JTextField textField_DienThoai;
+	private JTextArea textArea;
+	private JTextField textField_NgaySinh;
+	private JTextField textField_Email;
+	private JTextField textField_MaNguoiHocFind;
+	private JTable table;
+	private JComboBox comboBox;
+	private JTabbedPane tabbedPane;
+	private int count = 0;
+	private JButton btn_Them;
+	private JButton btnSua;
+	private JButton btnXoa;
+	private JButton btnMoi;
+	private JButton btnPre;
+	private JButton btnNext;
+	private JButton btnLast;
+	private JScrollPane scrollPane_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			NguoiHocJDialog dialog = new NguoiHocJDialog();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public NguoiHocJDialog() {
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(NguoiHocJDialog.class.getResource("/IMG_JPG/logo-truong-fpt_043152255.png")));
+		NguoiHocJDialogCTL ctl = new NguoiHocJDialogCTL(this);
+		setBounds(100, 100, 675, 533);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(255, 255, 255));
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Quản Lý Người Học");
+		lblNewLabel.setForeground(new Color(0, 0, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setBounds(10, 11, 209, 23);
+		contentPanel.add(lblNewLabel);
+
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 36, 655, 486);
+
+		contentPanel.add(tabbedPane);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		tabbedPane.addTab("Cập nhật", null, panel, null);
+		panel.setLayout(null);
+
+		btn_Them = new JButton("Thêm");
+		btn_Them.addActionListener(ctl);
+		btn_Them.setBounds(7, 424, 61, 23);
+		panel.add(btn_Them);
+
+		btnSua = new JButton("Sửa");
+		btnSua.addActionListener(ctl);
+		btnSua.setBounds(78, 424, 51, 23);
+		panel.add(btnSua);
+
+		btnXoa = new JButton("Xóa");
+		btnXoa.addActionListener(ctl);
+		btnXoa.setBounds(139, 424, 51, 23);
+		panel.add(btnXoa);
+
+		btnMoi = new JButton("Mới");
+		btnMoi.addActionListener(ctl);
+		btnMoi.setBounds(200, 424, 49, 23);
+		panel.add(btnMoi);
+
+		btnFirst = new JButton("|<");
+		btnFirst.addActionListener(ctl);
+		btnFirst.setBounds(410, 424, 45, 23);
+		panel.add(btnFirst);
+
+		btnPre = new JButton("<<");
+		btnPre.addActionListener(ctl);
+		btnPre.setBounds(465, 424, 49, 23);
+		panel.add(btnPre);
+
+		btnNext = new JButton(">>");
+		btnNext.addActionListener(ctl);
+		btnNext.setBounds(524, 424, 49, 23);
+		panel.add(btnNext);
+
+		btnLast = new JButton(">|");
+		btnLast.addActionListener(ctl);
+		btnLast.setBounds(583, 424, 45, 23);
+		panel.add(btnLast);
+
+		JLabel lblNewLabel_1 = new JLabel("Mã người học");
+		lblNewLabel_1.setBounds(10, 11, 101, 14);
+		panel.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_1_1 = new JLabel("Họ và tên");
+		lblNewLabel_1_1.setBounds(10, 64, 122, 14);
+		panel.add(lblNewLabel_1_1);
+
+		JLabel lblNewLabel_1_2 = new JLabel("Giới tính");
+		lblNewLabel_1_2.setBounds(10, 120, 122, 14);
+		panel.add(lblNewLabel_1_2);
+
+		JLabel lblNewLabel_1_3 = new JLabel("Điện thoại");
+		lblNewLabel_1_3.setBounds(10, 180, 164, 14);
+		panel.add(lblNewLabel_1_3);
+
+		textField_MaNguoiHoc = new JTextField();
+		textField_MaNguoiHoc.setName("maNguoiHoc");
+		textField_MaNguoiHoc.addKeyListener(ctl);
+		textField_MaNguoiHoc.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		textField_MaNguoiHoc.setBackground(new Color(255, 255, 255));
+		textField_MaNguoiHoc.setBounds(10, 36, 630, 20);
+		panel.add(textField_MaNguoiHoc);
+		textField_MaNguoiHoc.setColumns(10);
+
+		textField_HoTen = new JTextField();
+		textField_HoTen.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		textField_HoTen.setColumns(10);
+		textField_HoTen.setBounds(10, 89, 630, 20);
+		panel.add(textField_HoTen);
+
+		textField_DienThoai = new JTextField();
+		textField_DienThoai.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		textField_DienThoai.setColumns(10);
+		textField_DienThoai.setBounds(10, 202, 250, 20);
+		panel.add(textField_DienThoai);
+
+		JLabel lblNewLabel_1_4_1 = new JLabel("Ghi chú");
+		lblNewLabel_1_4_1.setBounds(10, 236, 48, 14);
+		panel.add(lblNewLabel_1_4_1);
+
+		textArea = new JTextArea();
+		textArea.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		String[] arr = { "Nam", "Nữ" };
+		comboBox = new JComboBox();
+		comboBox.addItem("");
+		for (String string : arr) {
+			comboBox.addItem(string);
+		}
+		comboBox.setBounds(10, 147, 250, 22);
+		panel.add(comboBox);
+
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setBorder(null);
+		scrollPane.setBounds(10, 261, 630, 152);
+		panel.add(scrollPane);
+
+		JLabel lblNewLabel_1_2_1 = new JLabel("Ngày sinh");
+		lblNewLabel_1_2_1.setBounds(289, 120, 122, 14);
+		panel.add(lblNewLabel_1_2_1);
+
+		JLabel lblNewLabel_1_2_1_1 = new JLabel("Địa chỉ email");
+		lblNewLabel_1_2_1_1.setBounds(289, 180, 122, 14);
+		panel.add(lblNewLabel_1_2_1_1);
+
+		textField_NgaySinh = new JTextField();
+		textField_NgaySinh.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		textField_NgaySinh.setColumns(10);
+		textField_NgaySinh.setBounds(289, 148, 351, 20);
+		panel.add(textField_NgaySinh);
+
+		textField_Email = new JTextField();
+		textField_Email.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		textField_Email.setColumns(10);
+		textField_Email.setBounds(289, 202, 351, 20);
+		panel.add(textField_Email);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		tabbedPane.addTab("Danh sách	", null, panel_1, null);
+		panel_1.setLayout(null);
+
+		textField_MaNguoiHocFind = new JTextField();
+		textField_MaNguoiHocFind.setName("Find");
+		textField_MaNguoiHocFind.setBorder(new MatteBorder(0, 0, 2, 1, (Color) new Color(0, 128, 255)));
+		textField_MaNguoiHocFind.addKeyListener(ctl);
+		textField_MaNguoiHocFind.setBounds(20, 37, 491, 20);
+		panel_1.add(textField_MaNguoiHocFind);
+		textField_MaNguoiHocFind.setColumns(10);
+
+		JLabel lblNewLabel_2 = new JLabel("Tìm kiếm");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(10, 11, 115, 14);
+		panel_1.add(lblNewLabel_2);
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBorder(new CompoundBorder());
+		panel_2.setBounds(10, 25, 630, 43);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+
+		JButton btnNewButton = new JButton("Tìm");
+		btnNewButton.setBounds(534, 11, 86, 23);
+		panel_2.add(btnNewButton);
+		btnNewButton.addActionListener(ctl);
+
+		table = new JTable();
+		table.setShowVerticalLines(false);
+		table.setSelectionBackground(new Color(255, 128, 0));
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Mã NH", "Họ tên", "Giới tính",
+				"Ngày sinh", "SĐT", "Email", "Ghi chú", "Ma NV", "Ngày ĐK" }));
+		table.addMouseListener(ctl);
+
+		scrollPane_1 = new JScrollPane(table);
+		scrollPane_1.setAutoscrolls(rootPaneCheckingEnabled);
+		scrollPane_1.setBounds(10, 84, 630, 363);
+		panel_1.add(scrollPane_1);
+
+		this.table.getTableHeader().setFont(new Font("Segoe", Font.BOLD, 12));
+		this.table.getTableHeader().setOpaque(false);
+		this.table.getTableHeader().setBackground(new Color(32, 136, 203));
+		this.table.getTableHeader().setForeground(new Color(255, 255, 255));
+		this.table.setRowHeight(25);
+
+		JLabel lbl_Exit = new JLabel("X");
+		lbl_Exit.addMouseListener(ctl);
+		lbl_Exit.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lbl_Exit.setForeground(new Color(255, 0, 0));
+		lbl_Exit.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_Exit.setBounds(627, 11, 48, 23);
+		contentPanel.add(lbl_Exit);
+
+		this.upstatus();
+		this.loadDataTable();
+		this.setUndecorated(true);
+		this.setLocationRelativeTo(null);
+	}
+
+	public void loadDataTable() {
+		try {
+			DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+			ArrayList<NguoiHocModel> list = NguoiHocDAO.getInstance().selectAll();
+			model_table.setRowCount(0);
+			for (NguoiHocModel nh : list) {
+				model_table.addRow(new Object[] { nh.getMaNguoiHoc(), nh.getTenNguoiHoc(),
+						XDate.dateString(nh.getNgaySinh()), (nh.isGioiTinh() ? "Nam" : "Nữ"), nh.getDienThoai(),
+						nh.getEmail(), nh.getGhiChu(), nh.getMaNV(), XDate.dateString(nh.getNgayDangKy()) });
+			}
+			model_table.fireTableDataChanged();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void findTable() {
+		try {
+//			StringBuilder sb = new StringBuilder();
+//			DataValidator.validateEmpty(this.textField_MaNguoiHocFind, sb, "Mã nhân viên null");
+//			if (sb.length() > 0) {
+////				this.loadDataTable();
+//				MsgBox.showErrorDialog(this, sb.toString(), "Error");
+//				return;
+//			}
+			DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+			String maNH = this.textField_MaNguoiHocFind.getText();
+			ArrayList<NguoiHocModel> list = NguoiHocDAO.getInstance().selectByCondition(maNH);
+			model_table.setRowCount(0);
+			for (NguoiHocModel nh : list) {
+				model_table.addRow(new Object[] { nh.getMaNguoiHoc(), nh.getTenNguoiHoc(),
+						XDate.dateString(nh.getNgaySinh()), (nh.isGioiTinh() ? "Nam" : "Nữ"), nh.getDienThoai(),
+						nh.getEmail(), nh.getGhiChu(), nh.getMaNV(), XDate.dateString(nh.getNgayDangKy()) });
+			}
+			model_table.fireTableDataChanged();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	public void insertTableNguoiHoc() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			DataValidator.validateIsMaNguoiHoc(this.textField_MaNguoiHoc, sb, "Mã người học null");
+			DataValidator.validateEmpty(this.textField_HoTen, sb, "Họ tên null");
+//			System.out.println(this.comboBox.getSelectedIndex());
+			DataValidator.validateCombobox(this.comboBox, sb, "Chưa chọn giới tính");
+			DataValidator.validateYear(this.textField_NgaySinh, sb, "Ngày sinh null");
+			DataValidator.validateIsSDT(this.textField_DienThoai, sb, "Số điện thoại null");
+			DataValidator.validateIsEmail(this.textField_Email, sb, "Email null");
+			if (sb.length() > 0) {
+				MsgBox.showErrorDialog(this, sb.toString(), "Error");
+				return;
+			}
+			String maNguoiHoc = this.textField_MaNguoiHoc.getText();
+			String hoTen = this.textField_HoTen.getText();
+			String tGioiTinh = this.comboBox.getSelectedItem().toString();
+			boolean gioiTinh = tGioiTinh.equals("Nam");
+			String tNgaySinh = this.textField_NgaySinh.getText();
+			Date ngaySinh = XDate.dateFormat(tNgaySinh);
+			String dienThoai = this.textField_DienThoai.getText();
+			String email = this.textField_Email.getText();
+			String ghiChu = this.textArea.getText();
+			String maNV = Auth.user.getMaNV();
+			Date ngayDangKy = XDate.now();
+			NguoiHocModel nh = new NguoiHocModel(maNguoiHoc, maNguoiHoc, ngaySinh, gioiTinh, dienThoai, email, ghiChu,
+					maNV, ngayDangKy);
+			if (NguoiHocDAO.getInstance().selectByID(nh) != null) {
+				if (MsgBox.showConfirmDialog(this, "Nhân viên đã tồn tại bạn muốn cập nhật?",
+						"Notification") == JOptionPane.NO_OPTION) {
+					return;
+				}
+				if (NguoiHocDAO.getInstance().update(nh) > 0) {
+					MsgBox.showMessageDialog(this, "Update successfull", "Update");
+				} else {
+					MsgBox.showMessageDialog(this, "Update fail", "Update");
+				}
+			} else {
+
+				if (NguoiHocDAO.getInstance().insert(nh) > 0) {
+					MsgBox.showMessageDialog(this, "Insert successfull", "Insert");
+				} else {
+					MsgBox.showMessageDialog(this, "Insert fail", "Insert");
+				}
+			}
+			this.loadDataTable();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteTableNguoiHoc() {
+		try {
+			if (MsgBox.showConfirmDialog(this, "Do you want to delete?", "Delete") == JOptionPane.NO_OPTION) {
+				return;
+			}
+			StringBuilder sb = new StringBuilder();
+			DataValidator.validateIsID(this.textField_MaNguoiHoc, sb, "Mã người học null");
+			if (sb.length() > 0) {
+				MsgBox.showErrorDialog(this, sb.toString(), "Error");
+				return;
+			}
+			String maNguoiHoc = this.textField_MaNguoiHoc.getText();
+			NguoiHocModel nh = new NguoiHocModel();
+			nh.setMaNguoiHoc(maNguoiHoc);
+			if (NguoiHocDAO.getInstance().delete(nh) > 0) {
+				MsgBox.showMessageDialog(this, "Delete successfull", "Insert");
+			} else {
+				MsgBox.showMessageDialog(this, "Delete fail", "Insert");
+			}
+			this.loadDataTable();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void resetForm() {
+		this.textField_MaNguoiHoc.setText("");
+		this.textField_HoTen.setText("");
+		this.textField_NgaySinh.setText("");
+		this.comboBox.setSelectedIndex(-1);
+		this.textField_DienThoai.setText("");
+		this.textField_Email.setText("");
+		this.textArea.setText("");
+		this.textField_MaNguoiHoc.requestFocus();
+		this.count = -1;
+		this.upstatus();
+	}
+
+	public NguoiHocModel getNguoiHoc() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		String id = model_table.getValueAt(i_row, 0) + "";
+		NguoiHocModel nvm = new NguoiHocModel();
+		nvm.setMaNguoiHoc(id);
+		NguoiHocModel nhd = NguoiHocDAO.getInstance().selectByID(nvm);
+		return nhd;
+	}
+
+	public void updateForm() {
+		try {
+			NguoiHocModel nh = this.getNguoiHoc();
+			this.textField_MaNguoiHoc.setText(nh.getMaNguoiHoc());
+			this.textField_HoTen.setText(nh.getTenNguoiHoc());
+			this.textField_NgaySinh.setText(XDate.dateString(nh.getNgaySinh()));
+			this.comboBox.setSelectedItem(nh.isGioiTinh() ? "Nam" : "Nữ");
+			this.textField_DienThoai.setText(nh.getDienThoai());
+			this.textField_Email.setText(nh.getEmail());
+			this.textArea.setText(nh.getGhiChu());
+			this.tabbedPane.setSelectedIndex(0);
+			int i_row = table.getSelectedRow();
+			this.count = i_row;
+			this.upstatus();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void upstatus() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		boolean edit = this.count >= 0;
+		boolean first = this.count == 0;
+		boolean last = this.count == model_table.getRowCount() - 1;
+
+		this.textField_MaNguoiHoc.setEditable(!edit);
+		this.btn_Them.setEnabled(!edit);
+		this.btnSua.setEnabled(edit);
+		this.btnXoa.setEnabled(edit);
+
+		this.btnFirst.setEnabled(edit && !first);
+		this.btnPre.setEnabled(edit && !first);
+		this.btnNext.setEnabled(edit && !last);
+		this.btnLast.setEnabled(edit && !last);
+	}
+
+	public void firstElement() {
+		this.count = 0;
+		table.setRowSelectionInterval(count, count);
+		this.updateForm();
+	}
+
+	public void previousElement() {
+		this.count--;
+		if (this.count < 0) {
+			this.count = 0;
+		}
+		table.setRowSelectionInterval(count, count);
+		this.updateForm();
+	}
+
+	public void nextElement() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		this.count = i_row;
+		this.count++;
+		System.out.println(count);
+		if (this.count > model_table.getRowCount() - 1) {
+			this.count = model_table.getRowCount() - 1;
+		}
+		table.setRowSelectionInterval(count, count);
+		this.updateForm();
+	}
+
+	public void lastElement() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		this.count = model_table.getRowCount() - 1;
+		table.setRowSelectionInterval(count, count);
+		this.updateForm();
+	}
+
+//	public void changeFind() {
+//		if (this.textField_MaNguoiHocFind.getText().isEmpty()) {
+//			this.loadDataTable();
+//		}
+//	}
+
+	public void exitForm() {
+		WindowEvent close = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+		Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(close);
+	}
+
+	public boolean checkMaNguoiHoc() {
+		try {
+			String maNguoiHoc = this.textField_MaNguoiHoc.getText().trim();
+			NguoiHocModel nh = new NguoiHocModel();
+			nh.setMaNguoiHoc(maNguoiHoc);
+			if (NguoiHocDAO.getInstance().selectByID(nh) != null) {
+				this.textField_MaNguoiHoc.setBackground(Color.orange);
+				MsgBox.showErrorDialog(this, "Mã người học đã tồn tại", "Notification");
+				return true;
+			} else {
+				this.textField_MaNguoiHoc.setBackground(Color.white);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+}

@@ -1,0 +1,25 @@
+package bai1;
+
+import java.awt.FlowLayout;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class Test extends JFrame
+{
+      private JLabel label;
+      public Test() {
+	}
+      {
+           super( "Testing JLabel" );
+           setLayout( new FlowLayout() ); 
+
+           // JLabel constructor with string, Icon and alignment arguments
+           Icon bug = new ImageIcon( getClass().getResource( "bug1.gif" ) );
+           label = new JLabel( "Label with text and icon", bug, SwingConstants.LEFT );
+           add( label ); 
+       }
+}

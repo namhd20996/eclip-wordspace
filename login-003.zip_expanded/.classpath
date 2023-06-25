@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="login-003/src"/>
+	<classpathentry kind="lib" path="login-003/dist/lib/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="login-003/dist/login-003.jar"/>
+	<classpathentry kind="lib" path="login-003/TimingFramework-0.55.jar"/>
+	<classpathentry kind="output" path="login-003/build/classes"/>
+</classpath>

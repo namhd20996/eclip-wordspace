@@ -1,0 +1,22 @@
+package bai4;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ListenerViewBai4 implements ActionListener{
+	private ViewBai4 viewBai4;
+	
+	public ListenerViewBai4(ViewBai4 viewBai4) {
+		this.viewBai4 = viewBai4;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String src = e.getActionCommand();
+		if(src.equals("Start")) {
+			this.viewBai4.runNum();
+		}
+	}
+
+}

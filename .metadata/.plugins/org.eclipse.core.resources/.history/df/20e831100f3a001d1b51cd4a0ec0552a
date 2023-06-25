@@ -1,0 +1,141 @@
+package bai2;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+public class Test extends JFrame {
+
+	private JPanel contentPane;
+	private JComponent jComp1;
+	private JComponent jComp2;
+	private JComponent jComp3;
+	private JComponent jComp4;
+	private JComponent jComp5;
+	private JComponent jComp6;
+	private JComponent jComp7;
+	private JComponent jComp8;
+	private JComponent jComp9;
+	private JComponent jComp10;
+	private JComponent jComp11;
+	private JComponent jComp12;
+	private JComponent jComp13;
+	private JComponent jComp14;
+	private JComponent jComp15;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Test frame = new Test();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Test() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//Keep references to the next few borders,
+		//for use in titles and compound borders.
+		Border blackline, raisedetched, loweredetched,
+		       raisedbevel, loweredbevel, empty;
+
+		blackline = BorderFactory.createLineBorder(Color.black);
+		raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+		loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+		raisedbevel = BorderFactory.createRaisedBevelBorder();
+		loweredbevel = BorderFactory.createLoweredBevelBorder();
+		empty = BorderFactory.createEmptyBorder();
+
+		//Simple borders
+		jComp1.setBorder(blackline);
+		jComp2.setBorder(raisedbevel);
+		jComp3.setBorder(loweredbevel);
+		jComp4.setBorder(empty);
+
+		//Matte borders
+		ImageIcon icon = createImageIcon("images/wavy.gif",
+		                                 "wavy-line border icon"); //20x22
+
+		jComp5.setBorder(BorderFactory.createMatteBorder(
+		                                   -1, -1, -1, -1, icon));
+		jComp6.setBorder(BorderFactory.createMatteBorder(
+		                                    1, 5, 1, 1, Color.red));
+		jComp7.setBorder(BorderFactory.createMatteBorder(
+		                                    0, 20, 0, 0, icon));
+
+		//Titled borders
+		TitledBorder title;
+		title = BorderFactory.createTitledBorder("title");
+		jComp8.setBorder(title);
+
+		title = BorderFactory.createTitledBorder(
+		                       blackline, "title");
+		title.setTitleJustification(TitledBorder.CENTER);
+		jComp9.setBorder(title);
+
+		title = BorderFactory.createTitledBorder(
+		                       loweredetched, "title");
+		title.setTitleJustification(TitledBorder.RIGHT);
+		jComp10.setBorder(title);
+
+		title = BorderFactory.createTitledBorder(
+		                       loweredbevel, "title");
+		title.setTitlePosition(TitledBorder.ABOVE_TOP);
+		jComp11.setBorder(title);
+
+		title = BorderFactory.createTitledBorder(
+		                       empty, "title");
+		title.setTitlePosition(TitledBorder.BOTTOM);
+		jComp12.setBorder(title);
+
+		//Compound borders
+		Border compound;
+		Border redline = BorderFactory.createLineBorder(Color.red);
+
+		//This creates a nice frame.
+		compound = BorderFactory.createCompoundBorder(
+		                          raisedbevel, loweredbevel);
+		jComp13.setBorder(compound);
+
+		//Add a red outline to the frame.
+		compound = BorderFactory.createCompoundBorder(
+		                          redline, compound);
+		jComp14.setBorder(compound);
+
+		//Add a title to the red-outlined frame.
+		compound = BorderFactory.createTitledBorder(
+		                          compound, "title",
+		                          TitledBorder.CENTER,
+		                          TitledBorder.BELOW_BOTTOM);
+		jComp15.setBorder(compound);
+		setContentPane(contentPane);
+	}
+
+	private ImageIcon createImageIcon(String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

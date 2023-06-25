@@ -1,0 +1,37 @@
+CREATE DATABASE fpl_daotao
+CHARACTER SET UTF8MB4
+COLLATE UTF8MB4_UNICODE_CI
+
+CREATE TABLE users(
+	userName VARCHAR(50),
+	passWordU VARCHAR(50),
+	roleU VARCHAR(50),
+	PRIMARY KEY (`userName`)
+);
+
+CREATE TABLE students(
+	maSV VARCHAR(50),
+	hoTen VARCHAR(50),
+	email VARCHAR(50),
+	soDT VARCHAR(15),
+	gioiTinh BOOLEAN,
+	diaChi VARCHAR(255),
+	hinh BLOB,
+	PRIMARY KEY (`maSV`)
+);
+
+CREATE TABLE grade(
+	id INT AUTO_INCREMENT,
+	maSV VARCHAR(50),
+	tiengAnh DOUBLE,
+	tinHoc DOUBLE,
+	GDTC DOUBLE,
+	PRIMARY KEY(`id`),
+	FOREIGN KEY (`maSV`) REFERENCES students(`maSV`)
+);
+
+SELECT *, (tiengAnh + tinHoc + GDTC)/3 AS "DTB" FROM grade ORDER BY DTB DESC LIMIT 3
+
+UPDATE grade
+SET tiengAnh = 9, tinHoc = 10, GDTC = 9
+WHERE maSV = "Ps25979"

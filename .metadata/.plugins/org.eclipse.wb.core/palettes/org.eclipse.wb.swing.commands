@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<addCategory
+		id="category_1668676918134"
+		name="Custom"
+		description="Container for custom components"
+		visible="true"
+		open="true"/>
+	<addComponent
+		id="custom_1668676918134"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668676935188"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<moveCategory
+		id="org.eclipse.wb.swing.components"
+		nextCategory="org.eclipse.wb.swing.JGoodies"/>
+	<addComponent
+		id="custom_1668677080003"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668677111804"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668677207230"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668683333031"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668683427373"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668683970909"
+		name="Test"
+		description="Creates view.Test component."
+		visible="true"
+		class="view.Test"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668684829879"
+		name="ProductInfor"
+		description="Creates view.ProductInfor component."
+		visible="true"
+		class="view.ProductInfor"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668684899812"
+		name="ProductInfor"
+		description="Creates view.ProductInfor component."
+		visible="true"
+		class="view.ProductInfor"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668685649606"
+		name="TTSanPham"
+		description="Creates view.TTSanPham component."
+		visible="true"
+		class="view.TTSanPham"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668685707808"
+		name="TTSanPham"
+		description="Creates view.TTSanPham component."
+		visible="true"
+		class="view.TTSanPham"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668685814821"
+		name="TTSanPham"
+		description="Creates view.TTSanPham component."
+		visible="true"
+		class="view.TTSanPham"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668687320776"
+		name="ProductInfor"
+		description="Creates layout.ProductInfor component."
+		visible="true"
+		class="layout.ProductInfor"
+		category="category_1668676918134"/>
+	<addComponent
+		id="custom_1668694671577"
+		name="ProductInfor"
+		description="Creates layout.ProductInfor component."
+		visible="true"
+		class="layout.ProductInfor"
+		category="category_1668676918134"/>
+</commands>

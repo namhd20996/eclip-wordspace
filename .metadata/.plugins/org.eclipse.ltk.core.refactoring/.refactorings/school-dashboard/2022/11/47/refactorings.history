@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;EventShowPopupMenu.java&apos; to &apos;A_Java_ProjectOne/school-dashboard-v2/src/lib&apos;&#x0D;&#x0A;- Original project: &apos;school-dashboard&apos;&#x0D;&#x0A;- Destination element: &apos;A_Java_ProjectOne/school-dashboard-v2/src/lib&apos;&#x0D;&#x0A;- Original element: &apos;com.raven.event.EventShowPopupMenu.java&apos;" description="Copy compilation unit" destination="=A_Java_ProjectOne/school-dashboard-v2\/src&lt;lib" element1="/school-dashboard\/src&lt;com.raven.event{EventShowPopupMenu.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1668850372191" units="1" version="1.0"/>
+</session>

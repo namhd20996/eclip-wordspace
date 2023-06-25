@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ImageHelper.java&apos; to &apos;A_JavaThree_Assignment/src/lib&apos;&#x0D;&#x0A;- Original project: &apos;A_Java_IMG&apos;&#x0D;&#x0A;- Destination element: &apos;A_JavaThree_Assignment/src/lib&apos;&#x0D;&#x0A;- Original element: &apos;review.ImageHelper.java&apos;" description="Copy compilation unit" destination="=A_JavaThree_Assignment/src&lt;lib" element1="/src&lt;review{ImageHelper.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1664628725041" units="1" version="1.0"/>
+</session>

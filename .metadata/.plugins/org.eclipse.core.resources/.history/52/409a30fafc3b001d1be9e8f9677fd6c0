@@ -1,0 +1,105 @@
+package bai1;
+
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
+import javax.swing.JToolBar;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+
+public class TextAreaView extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TextAreaView frame = new TextAreaView();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TextAreaView() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 441);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("File");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem jMenuItem_New = new JMenuItem("New");
+		mnNewMenu.add(jMenuItem_New);
+		
+		JMenuItem jMenuItem_Open = new JMenuItem("Open");
+		mnNewMenu.add(jMenuItem_Open);
+		
+		JMenuItem jMenuItem_Save = new JMenuItem("Save");
+		mnNewMenu.add(jMenuItem_Save);
+		
+		JMenu mnNewMenu_1 = new JMenu("Color");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem jMenuItem_Red = new JMenuItem("Red");
+		mnNewMenu_1.add(jMenuItem_Red);
+		
+		JMenuItem jMenuItem_Green = new JMenuItem("Green");
+		mnNewMenu_1.add(jMenuItem_Green);
+		
+		JMenuItem jMenuItem_Blue = new JMenuItem("Blue");
+		mnNewMenu_1.add(jMenuItem_Blue);
+		
+		JSeparator separator = new JSeparator();
+		mnNewMenu_1.add(separator);
+		
+		JMenuItem jMenuItem_TextColor = new JMenuItem("Text color");
+		mnNewMenu_1.add(jMenuItem_TextColor);
+		
+		JMenu mnNewMenu_2 = new JMenu("System");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem jMenuItem_About = new JMenuItem("About us");
+		mnNewMenu_2.add(jMenuItem_About);
+		
+		JMenuItem jMenuItem_Exit = new JMenuItem("Exit");
+		mnNewMenu_2.add(jMenuItem_Exit);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setBounds(10, 0, 229, 28);
+		contentPane.add(toolBar);
+		
+		JButton btnNewButton = new JButton("New button");
+		toolBar.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		toolBar.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		toolBar.add(btnNewButton_2);
+	}
+}

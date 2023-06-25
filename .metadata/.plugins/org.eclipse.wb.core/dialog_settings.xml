@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelDialog">
+		<item key="x" value="234"/>
+		<item key="y" value="119"/>
+		<item key="width" value="812"/>
+		<item key="height" value="533"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.property.order.ReorderDialog">
+		<item key="x" value="344"/>
+		<item key="y" value="198"/>
+		<item key="width" value="593"/>
+		<item key="height" value="375"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.actions.assistant.LayoutAssistantWindow">
+		<item key="x" value="681"/>
+		<item key="y" value="331"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.nls.ui.NlsDialog">
+		<item key="x" value="320"/>
+		<item key="y" value="188"/>
+		<item key="width" value="640"/>
+		<item key="height" value="376"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.util.RenameConvertSupport$RenameDialog">
+		<item key="x" value="334"/>
+		<item key="y" value="226"/>
+		<item key="width" value="613"/>
+		<item key="height" value="300"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.util.factory.FactoryCreateAction$FactoryCreateDialog">
+		<item key="x" value="94"/>
+		<item key="y" value="0"/>
+		<item key="width" value="1092"/>
+		<item key="height" value="752"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.property.editor.string.StringPropertyDialog">
+		<item key="x" value="337"/>
+		<item key="y" value="204"/>
+		<item key="width" value="606"/>
+		<item key="height" value="346"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.PalettePreferencesDialog">
+		<item key="x" value="334"/>
+		<item key="y" value="195"/>
+		<item key="width" value="613"/>
+		<item key="height" value="363"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.util.ExposeComponentSupport$ExposeDialog">
+		<item key="x" value="334"/>
+		<item key="y" value="226"/>
+		<item key="width" value="613"/>
+		<item key="height" value="300"/>
+	</section>
+</section>

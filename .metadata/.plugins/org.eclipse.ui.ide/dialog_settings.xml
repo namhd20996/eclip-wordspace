@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\eclipse-workspace\java-streams-main"/>
+			<item value="D:\eclipse-workspace\A_Java_ProjectOne_Maven"/>
+			<item value="C:\Users\Duy Nam\Downloads\A_Java_ProjectOne_Maven"/>
+			<item value="C:\Users\Duy Nam\Downloads\A_Java_ProjectOne_Maven_Test"/>
+			<item value="C:\Users\Duy Nam\Downloads\A_Java_ProjectOne_Maven\A_Java_ProjectOne_Maven_Exam"/>
+			<item value="C:\Users\Hoang Nam\OneDrive\Documents\NetBeansProjects\Chart"/>
+			<item value="C:\Users\Hoang Nam\Downloads\PS25932_TranHuyHoang_Asm.zip"/>
+			<item value="C:\Users\Hoang Nam\OneDrive\Documents\NetBeansProjects\GirdBagLayout"/>
+			<item value="C:\Users\Hoang Nam\Downloads\ViDuSwing.zip"/>
+			<item value="D:\eclipse-workspace\GirdBagLayout"/>
+			<item value="C:\Users\Hoang Nam\OneDrive\Documents\NetBeansProjects\JavaApplication3"/>
+			<item value="C:\Users\Hoang Nam\Downloads\school-dashboard"/>
+			<item value="D:\eclipse-workspace\A_Java_ProjectOne"/>
+			<item value="D:\eclipse-workspace\ProjectBackUp"/>
+			<item value="C:\Users\Hoang Nam\Downloads\school-dashboard.zip"/>
+			<item value="D:\eclipse-workspace\UI_School.zip_expanded\school-dashboard-v2"/>
+			<item value="C:\Users\Hoang Nam\Downloads\school-dashboard-v2.zip"/>
+			<item value="C:\Users\Hoang Nam\eclipse-workspace\javaswingdev.zip_expanded"/>
+			<item value="C:\Users\Hoang Nam\Downloads\ui-dashboard-001"/>
+			<item value="C:\Users\Hoang Nam\OneDrive\Documents\NetBeansProjects\Test"/>
+			<item value="C:\Users\Hoang Nam\Downloads\javaswingdev"/>
+			<item value="C:\Users\Hoang Nam\Downloads\ui-dashboard-003"/>
+			<item value="C:\Users\Hoang Nam\Downloads\ui-dashboard-002p1"/>
+			<item value="C:\Users\Hoang Nam\Downloads\school-dashboard-v2"/>
+			<item value="C:\Users\Hoang Nam\Downloads\UI_Java\ui-dashboard-002"/>
+			<item value="C:\Users\Hoang Nam\Downloads\ui-dashboard-010"/>
+			<item value="C:\Users\Hoang Nam\Downloads\login-004\login-004"/>
+			<item value="C:\Users\Hoang Nam\Downloads\ui-dashboard-001\ui-dashboard-001"/>
+			<item value="C:\Users\Hoang Nam\Downloads\Slide3"/>
+			<item value="C:\Users\Hoang Nam\Downloads\LoginForm"/>
+			<item value="C:\Users\Hoang Nam\Downloads\part%204.zip"/>
+			<item value="C:\Users\Hoang Nam\Downloads\login-003.zip"/>
+			<item value="C:\Users\Hoang Nam\Downloads\Source%20code.zip"/>
+			<item value="C:\Users\Hoang Nam\Downloads\login-003"/>
+			<item value="C:\Users\Hoang Nam\Downloads\Source%20code\Source%20code"/>
+			<item value="C:\Users\Hoang Nam\Downloads\Source%20code"/>
+			<item value="C:\Users\Hoang Nam\Downloads\src"/>
+			<item value="C:\Users\Hoang Nam\Downloads\duanmau\Duanmau"/>
+			<item value="C:\Users\Hoang Nam\Downloads\duanmau"/>
+			<item value="C:\Users\Hoang Nam\Downloads\TCP"/>
+			<item value="D:\EclipseCode"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.views.markers.FiltersConfigurationDialog">
+	</section>
+</section>

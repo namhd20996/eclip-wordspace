@@ -1,0 +1,621 @@
+package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.AbstractButton;
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import controller.ControllerMouse;
+import controller.QLNVController;
+import model.Data;
+import model.NhanVienModel;
+import model.QLNVModel;
+
+import javax.swing.JScrollPane;
+
+public class QLNVView extends JFrame implements Runnable {
+
+	private JPanel contentPane;
+	private JTextField textField_maNhanVien;
+	private JTextField textField_hoVaTen;
+	private JTextField textField_tuoi;
+	private JTextField textField_email;
+	private JTextField textField_luong;
+	private JTable table;
+	private JLabel textLoi;
+	private Container textLoi_1;
+	private JLabel textLoi_1_1;
+	private JLabel textLoi_1_2;
+	private JLabel textLoi_1_3;
+	private QLNVModel qlnvModel;
+	private JLabel labelClock;
+	private JLabel label_Index;
+	private int count;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					QLNVView frame = new QLNVView();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public QLNVView() {
+		this.qlnvModel = new QLNVModel();
+		ControllerMouse ctl = new ControllerMouse(this);
+		QLNVController qlnvController = new QLNVController(this);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 536, 532);
+		contentPane = new JPanel();
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Quản Lý Nhân Viên");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setBounds(129, 11, 178, 31);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Mã nhân viên");
+		lblNewLabel_1.setBounds(10, 74, 147, 14);
+		contentPane.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_2 = new JLabel("Họ và tên");
+		lblNewLabel_2.setBounds(10, 113, 103, 14);
+		contentPane.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("Tuổi");
+		lblNewLabel_3.setBounds(10, 149, 48, 14);
+		contentPane.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_4 = new JLabel("Email");
+		lblNewLabel_4.setBounds(10, 194, 48, 14);
+		contentPane.add(lblNewLabel_4);
+
+		JLabel lblNewLabel_5 = new JLabel("Lương");
+		lblNewLabel_5.setBounds(10, 233, 48, 14);
+		contentPane.add(lblNewLabel_5);
+
+		textField_maNhanVien = new JTextField();
+		textField_maNhanVien.setBounds(94, 71, 96, 20);
+		contentPane.add(textField_maNhanVien);
+		textField_maNhanVien.setColumns(10);
+
+		textField_hoVaTen = new JTextField();
+		textField_hoVaTen.setBounds(94, 110, 195, 20);
+		textField_hoVaTen.setColumns(10);
+		contentPane.add(textField_hoVaTen);
+
+		textField_tuoi = new JTextField();
+		textField_tuoi.setBounds(94, 146, 96, 20);
+		textField_tuoi.setColumns(10);
+		contentPane.add(textField_tuoi);
+
+		textField_email = new JTextField();
+		textField_email.setBounds(94, 191, 195, 20);
+		textField_email.setColumns(10);
+		contentPane.add(textField_email);
+
+		textField_luong = new JTextField();
+		textField_luong.setBounds(94, 230, 96, 20);
+		textField_luong.setColumns(10);
+		contentPane.add(textField_luong);
+
+		JButton btnThem = new JButton("Thêm");
+		btnThem.setBounds(411, 70, 89, 23);
+		contentPane.add(btnThem);
+		btnThem.addActionListener(qlnvController);
+
+		JButton btnXoa = new JButton("Xóa");
+		btnXoa.setBounds(411, 145, 89, 23);
+		contentPane.add(btnXoa);
+		btnXoa.addActionListener(qlnvController);
+
+		JButton btnLuu = new JButton("Lưu");
+		btnLuu.setBounds(411, 109, 89, 23);
+		contentPane.add(btnLuu);
+		btnLuu.addActionListener(qlnvController);
+
+		JButton btnTim = new JButton("Tìm");
+		btnTim.setBounds(411, 179, 89, 23);
+		contentPane.add(btnTim);
+		btnTim.addActionListener(qlnvController);
+
+		JButton btnFile = new JButton("Mở file");
+		btnFile.setBounds(411, 229, 89, 23);
+		contentPane.add(btnFile);
+		btnFile.addActionListener(qlnvController);
+
+		JButton btnLuuFile = new JButton("Lưu file");
+		btnLuuFile.setBounds(411, 263, 89, 23);
+		contentPane.add(btnLuuFile);
+		btnLuuFile.addActionListener(qlnvController);
+
+		JButton btnFirst = new JButton("|<");
+		btnFirst.setBounds(94, 263, 53, 23);
+		contentPane.add(btnFirst);
+		btnFirst.addActionListener(qlnvController);
+
+		JButton btnPrew = new JButton("<<");
+		btnPrew.setBounds(137, 263, 53, 23);
+		contentPane.add(btnPrew);
+		btnPrew.addActionListener(qlnvController);
+
+		JButton btnNext = new JButton(">>");
+		btnNext.setBounds(189, 263, 53, 23);
+		contentPane.add(btnNext);
+		btnNext.addActionListener(qlnvController);
+
+		JButton btnLast = new JButton(">|");
+		btnLast.setBounds(240, 263, 53, 23);
+		contentPane.add(btnLast);
+		btnLast.addActionListener(qlnvController);
+
+		table = new JTable();
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Mã nhân viên", "Họ và tên", "Tuổi", "Email", "Lương" }));
+		table.addMouseListener(ctl);
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(10, 320, 504, 166);
+		contentPane.add(scrollPane);
+
+		textLoi = new JLabel("");
+		textLoi.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		textLoi.setBounds(94, 88, 116, 14);
+		contentPane.add(textLoi);
+
+		textLoi_1 = new JLabel("");
+		textLoi_1.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		textLoi_1.setBounds(94, 125, 116, 20);
+		contentPane.add(textLoi_1);
+
+		JLabel lblNewLabel_6 = new JLabel("Record:");
+		lblNewLabel_6.setForeground(new Color(255, 0, 0));
+		lblNewLabel_6.setBounds(94, 297, 48, 14);
+		contentPane.add(lblNewLabel_6);
+
+		textLoi_1_1 = new JLabel("");
+		textLoi_1_1.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		textLoi_1_1.setBounds(94, 160, 116, 20);
+		contentPane.add(textLoi_1_1);
+
+		textLoi_1_2 = new JLabel("");
+		textLoi_1_2.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		textLoi_1_2.setBounds(94, 210, 116, 20);
+		contentPane.add(textLoi_1_2);
+
+		textLoi_1_3 = new JLabel("");
+		textLoi_1_3.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		textLoi_1_3.setBounds(94, 246, 116, 20);
+		contentPane.add(textLoi_1_3);
+
+		labelClock = new JLabel("00:00 AM");
+		labelClock.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelClock.setForeground(new Color(255, 0, 0));
+		labelClock.setBounds(411, 17, 103, 20);
+		contentPane.add(labelClock);
+
+		JButton btnHuyTim = new JButton("Hủy tìm");
+		btnHuyTim.setBounds(411, 207, 89, 23);
+		contentPane.add(btnHuyTim);
+		btnHuyTim.addActionListener(qlnvController);
+
+		Box horizontalBox = Box.createHorizontalBox();
+		horizontalBox.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		horizontalBox.setBounds(398, 63, 116, 246);
+		contentPane.add(horizontalBox);
+
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setBounds(0, -116, 544, 602);
+		contentPane.add(lblNewLabel_7);
+
+		Thread thread = new Thread(this);
+		thread.start();
+
+//		URL url_title = QLNVView.class.getResource("me.jpg");
+//		Image img = Toolkit.getDefaultToolkit().createImage(url_title);
+//		this.setIconImage(img);
+
+		lblNewLabel_7
+				.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(QLNVView.class.getResource("me.jpg"))));
+
+		label_Index = new JLabel("");
+		label_Index.setForeground(new Color(255, 0, 0));
+		label_Index.setBounds(142, 297, 100, 14);
+		contentPane.add(label_Index);
+
+		this.setTitle("Quản Lý Nhân Viên");
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+
+	public void resetForm() {
+		this.textField_maNhanVien.setText("");
+		this.textField_hoVaTen.setText("");
+		this.textField_tuoi.setText("");
+		this.textField_email.setText("");
+		this.textField_luong.setText("");
+	}
+
+	public void kiemForm() {
+		if (this.textField_maNhanVien.getText().equals("")) {
+			this.textLoi.setText("Chưa nhập mã nhân viên");
+			this.textLoi.setForeground(Color.red);
+		} else {
+			String maNhanVien = this.textField_maNhanVien.getText();
+			if (!Data.isID(maNhanVien)) {
+				this.textLoi.setText("Sai định dạng");
+				this.textLoi.setForeground(Color.red);
+			} else {
+				this.textLoi.setText("");
+			}
+		}
+
+		if (this.textField_hoVaTen.getText().equals("")) {
+			((JLabel) this.textLoi_1).setText("Chưa nhập họ và tên");
+			this.textLoi_1.setForeground(Color.red);
+		} else {
+			String hoVaTen = this.textField_hoVaTen.getText();
+			if (!Data.isHoTen(hoVaTen)) {
+				((JLabel) this.textLoi_1).setText("Sai định dạng");
+				this.textLoi_1.setForeground(Color.red);
+			} else {
+				((JLabel) this.textLoi_1).setText("");
+			}
+		}
+
+		if (this.textField_email.getText().equals("")) {
+			this.textLoi_1_2.setText("Chưa nhập email");
+			this.textLoi_1_2.setForeground(Color.red);
+		} else {
+			String email = this.textField_email.getText();
+			if (!Data.isEmail(email)) {
+				this.textLoi_1_2.setText("Nhập sai định dạng email");
+				this.textLoi_1_2.setForeground(Color.red);
+			} else {
+				this.textLoi_1_2.setText("");
+			}
+		}
+
+		if (this.textField_luong.getText().equals("")) {
+			this.textLoi_1_3.setText("Chưa nhập lương");
+			this.textLoi_1_3.setForeground(Color.red);
+		} else {
+			this.textLoi_1_3.setText("");
+		}
+		try {
+			double luong = Double.valueOf(this.textField_luong.getText());
+			if (luong < 5) {
+				this.textLoi_1_3.setText("Nhập lương >=5");
+				this.textLoi_1_3.setForeground(Color.red);
+			} else {
+				this.textLoi_1_3.setText("");
+			}
+		} catch (Exception e) {
+			this.textLoi_1_3.setText("Nhập lương phải là số");
+			this.textLoi_1_3.setForeground(Color.red);
+		}
+
+		if (this.textField_tuoi.getText().equals("")) {
+			this.textLoi_1_1.setText("Chưa nhập tuổi");
+			this.textLoi_1_1.setForeground(Color.red);
+		} else {
+			this.textLoi_1_1.setText("");
+		}
+
+		try {
+			double tuoi = Double.valueOf(this.textField_tuoi.getText());
+			if (tuoi < 16 || tuoi > 55) {
+				this.textLoi_1_1.setText("Nhập tuổi >16, tuổi <55");
+				this.textLoi_1_1.setForeground(Color.red);
+			}
+		} catch (Exception e) {
+			this.textLoi_1_1.setText("Tuổi phải là số");
+			this.textLoi_1_1.setForeground(Color.red);
+		}
+	}
+
+	public void luuDoiTuong() {
+		String maNhanVien = this.textField_maNhanVien.getText();
+		String hoVaTen = this.textField_hoVaTen.getText();
+		int tuoi = Integer.valueOf(this.textField_tuoi.getText());
+		String email = this.textField_email.getText();
+		double luong = Double.valueOf(this.textField_luong.getText());
+		NhanVienModel nv = new NhanVienModel(maNhanVien, hoVaTen, tuoi, email, luong);
+		this.themHoacCapNhatNV(nv);
+	}
+
+	private void themHoacCapNhatNV(NhanVienModel nv) {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		if (!this.qlnvModel.kiemTraTonTai(nv)) {
+			this.qlnvModel.insert(nv);
+			this.themVaoTable(nv);
+		} else {
+			this.qlnvModel.update(nv);
+			int soLuongDong = model_table.getRowCount();
+			for (int i = 0; i < soLuongDong; i++) {
+				String id = model_table.getValueAt(i, 0) + "";
+				if (id.equals(nv.getMaNhanVien())) {
+					model_table.setValueAt(nv.getMaNhanVien(), i, 0);
+					model_table.setValueAt(nv.getHoVaTen(), i, 1);
+					model_table.setValueAt(nv.getTuoi(), i, 2);
+					model_table.setValueAt(nv.getEmail(), i, 3);
+					model_table.setValueAt(nv.getLuong(), i, 4);
+				}
+			}
+		}
+	}
+
+	private void themVaoTable(NhanVienModel nv) {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		model_table.addRow(
+				new Object[] { nv.getMaNhanVien(), nv.getHoVaTen(), nv.getTuoi(), nv.getEmail(), nv.getLuong() });
+	}
+
+	public NhanVienModel getNhanVienDangChon() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_Row = table.getSelectedRow();
+		String maNhanVien = model_table.getValueAt(i_Row, 0) + "";
+		String hoVaTen = model_table.getValueAt(i_Row, 1) + "";
+		int tuoi = Integer.valueOf(model_table.getValueAt(i_Row, 2) + "");
+		String email = model_table.getValueAt(i_Row, 3) + "";
+		double luong = Double.valueOf(model_table.getValueAt(i_Row, 4) + "");
+		NhanVienModel nv = new NhanVienModel(maNhanVien, hoVaTen, tuoi, email, luong);
+		return nv;
+
+	}
+
+	public void thucHienXoa() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa dòng đang chọn");
+		if (luaChon == JOptionPane.YES_OPTION) {
+			NhanVienModel nv = this.getNhanVienDangChon();
+			this.qlnvModel.delete(nv);
+			model_table.removeRow(i_row);
+		}
+	}
+
+	public void loadLaiDuLieu() {
+		while (true) {
+			DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+			int soLuongDong = model_table.getRowCount();
+			if (soLuongDong == 0) {
+				break;
+			} else {
+				model_table.removeRow(0);
+			}
+		}
+		for (NhanVienModel nv : this.qlnvModel.getDsNhanVien()) {
+			this.themVaoTable(nv);
+		}
+	}
+
+	public void updateForm() {
+		NhanVienModel nv = this.getNhanVienDangChon();
+		this.textField_maNhanVien.setText(nv.getMaNhanVien());
+		this.textField_hoVaTen.setText(nv.getHoVaTen());
+		this.textField_tuoi.setText(nv.getTuoi() + "");
+		this.textField_email.setText(nv.getEmail());
+		this.textField_luong.setText(nv.getLuong() + "");
+	}
+
+	public void saveFile(String path) {
+		try {
+			this.qlnvModel.setTenFile(path);
+			OutputStream os = new FileOutputStream(path);
+			ObjectOutputStream oos = new ObjectOutputStream(os);
+			for (NhanVienModel nv : this.qlnvModel.getDsNhanVien()) {
+				oos.writeObject(nv);
+			}
+			oos.flush();
+			oos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void thucHienSave() {
+		JFileChooser fc = new JFileChooser();
+		if (this.qlnvModel.getTenFile().length() > 0) {
+			saveFile(this.qlnvModel.getTenFile());
+		} else {
+			int returnVal = fc.showSaveDialog(this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				saveFile(file.getAbsolutePath());
+			}
+		}
+	}
+
+	public void openFile(File file) {
+		ArrayList<NhanVienModel> ds = new ArrayList<NhanVienModel>();
+		try {
+			InputStream is = new FileInputStream(file.getAbsolutePath());
+			ObjectInputStream ois = new ObjectInputStream(is);
+			NhanVienModel nv = null;
+			while ((nv = (NhanVienModel) ois.readObject()) != null) {
+				ds.add(nv);
+			}
+			ois.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.qlnvModel.setDsNhanVien(ds);
+	}
+
+	public void thucHienOpen() {
+		JFileChooser fc = new JFileChooser();
+		int returnVal = fc.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			openFile(file);
+			this.loadLaiDuLieu();
+		}
+	}
+
+	public void thucHienTim() {
+		// Gọi hàm hủy tìm để dữ liệu tìm trả về ban đầu
+		this.loadLaiDuLieu();
+		// Thực hiện tìm
+		String maNhanVienTimKiem = this.textField_maNhanVien.getText();
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int soLuongDong = model_table.getRowCount();
+		Set<Integer> idCuaSinhVienCanXoa = new TreeSet<>();
+
+		if (maNhanVienTimKiem.length() > 0) {
+			for (int i = 0; i < soLuongDong; i++) {
+				String id = model_table.getValueAt(i, 0) + "";
+				if (!id.equals(maNhanVienTimKiem)) {
+					idCuaSinhVienCanXoa.add(Integer.valueOf(id));
+				}
+			}
+		}
+
+		for (Integer idCanXoa : idCuaSinhVienCanXoa) {
+			soLuongDong = model_table.getRowCount();
+			for (int i = 0; i < soLuongDong; i++) {
+				String idTrongTable = model_table.getValueAt(i, 0) + "";
+				if (idTrongTable.equals(idCanXoa.toString())) {
+					try {
+						model_table.removeRow(i);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
+			}
+		}
+	}
+	
+	public int soLuongDongTable() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int soLuongDong = model_table.getRowCount();
+		return soLuongDong;
+	}
+
+	public void lableIndex(int count, int soLuongDong) {
+		this.label_Index.setText((count+1) + " of " + soLuongDong);
+	}
+	
+	public void indexMouse() {
+		int soLuongDong = this.soLuongDongTable();
+		this.lableIndex(count, soLuongDong);
+	}
+	
+	public void firstElement() {
+		int soLuongDong = this.soLuongDongTable();
+		table.setRowSelectionInterval(0, 0);
+		this.lableIndex(0, soLuongDong);
+		this.updateForm();
+	}
+
+	public void lastElement() {
+		int soLuongDong = this.soLuongDongTable();
+		this.lableIndex(soLuongDong-1, soLuongDong);
+		table.setRowSelectionInterval(soLuongDong-1, soLuongDong-1);
+		this.updateForm();
+	}
+
+	public void nextElement() {
+		int soLuongDong = this.soLuongDongTable();
+		int i_row = table.getSelectedRow();
+		count = i_row;
+		count++;
+		if (count < soLuongDong) {
+			this.lableIndex(count, soLuongDong);
+		}
+		table.setRowSelectionInterval(count, count);
+		this.updateForm();
+		System.out.println(count);
+
+	}
+
+	public void prewElement() {
+		int soLuongDong = this.soLuongDongTable();
+		int i_row = table.getSelectedRow();
+		count = i_row;
+		count--;
+		if (count >= 0) {
+			this.lableIndex(count, soLuongDong);
+		}
+		table.setRowSelectionInterval(count, count);
+		this.updateForm();
+		System.out.println(count);
+
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			Date now = new Date();
+			SimpleDateFormat fm = new SimpleDateFormat("hh:mm:ss aa");
+			this.labelClock.setText(fm.format(now));
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+		}
+	}
+}

@@ -1,0 +1,155 @@
+package bai4;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.JButton;
+import java.awt.Color;
+
+public class ViewBai4 extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JButton btn_1;
+	private JButton btn_2;
+	private JButton btn_3;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					ViewBai4 frame = new ViewBai4();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ViewBai4() {
+		ListenerViewBai4 ls = new ListenerViewBai4(this);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 412, 246);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Xổ Số Kiến Thiết");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblNewLabel.setForeground(new Color(255, 0, 0));
+		lblNewLabel.setBounds(88, 23, 248, 50);
+		contentPane.add(lblNewLabel);
+
+		textField = new JTextField();
+		textField.setEnabled(false);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setText("0");
+		textField.setFont(new Font("Tahoma", Font.BOLD, 18));
+		textField.setBounds(55, 130, 89, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+
+		textField_1 = new JTextField();
+		textField_1.setText("0");
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		textField_1.setEnabled(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(170, 130, 80, 20);
+		contentPane.add(textField_1);
+
+		textField_2 = new JTextField();
+		textField_2.setText("0");
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		textField_2.setEnabled(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(273, 130, 80, 20);
+		contentPane.add(textField_2);
+
+		btn_1 = new JButton("Start");
+		btn_1.setBounds(55, 161, 89, 23);
+		contentPane.add(btn_1);
+		btn_1.addActionListener(ls);
+
+		btn_2 = new JButton("Start ");
+		btn_2.setBounds(170, 161, 80, 23);
+		contentPane.add(btn_2);
+		btn_2.addActionListener(ls);
+
+		btn_3 = new JButton(" Start");
+		btn_3.setBounds(273, 161, 80, 23);
+		contentPane.add(btn_3);
+		
+		lblNewLabel_1 = new JLabel("Trăm");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(74, 100, 48, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("Chục");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(180, 100, 48, 19);
+		contentPane.add(lblNewLabel_2);
+		
+		lblNewLabel_3 = new JLabel("Đơn vị");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(288, 100, 48, 19);
+		contentPane.add(lblNewLabel_3);
+		btn_3.addActionListener(ls);
+		this.setLocationRelativeTo(null);
+	}
+
+	public void ranDom(JTextField jTextField) {
+		new Thread() {
+			@Override
+			public void run() {
+				for (int i = 0; i < 1000; i++) {
+					int so = (int) Math.round(Math.random() * 9);
+					jTextField.setText(String.valueOf(so));
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+
+					}
+				}
+			}
+		}.start();
+	}
+
+	public void runNum() {
+		this.ranDom(textField);
+		this.btn_1.setEnabled(false);
+	}
+
+	public void runNum1() {
+		this.ranDom(textField_1);
+		this.btn_2.setEnabled(false);
+	}
+
+	public void runNum2() {
+		this.ranDom(textField_2);
+		this.btn_3.setEnabled(false);
+	}
+}

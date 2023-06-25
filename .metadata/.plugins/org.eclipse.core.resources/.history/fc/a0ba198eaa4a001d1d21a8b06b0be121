@@ -1,0 +1,25 @@
+package test;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Date;
+
+import dao.NhanVienDAO;
+import dao_helper.NhanVienDAO_Test;
+import database.JDBCUtil;
+import lib.JDBCHelper;
+import model.NhanVienModel;
+
+public class TestJDBCHelper {
+	public static void main(String[] args) {
+		NhanVienModel n = new NhanVienModel("Ps001", "123", "Bao", false);
+//		NhanVienDAO_Test.getInstance().insert(n);
+		NhanVienModel nv = NhanVienDAO_Test.getInstance().selectByID(n);
+//		NhanVienModel nv1= NhanVienDAO.getInstance().selectByID(n);
+		System.out.println(nv);
+//		NhanVienDAO.getInstance().delete(n);
+		
+
+		
+	}
+}

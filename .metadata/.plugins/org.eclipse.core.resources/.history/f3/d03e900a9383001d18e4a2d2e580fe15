@@ -1,0 +1,85 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import dao.PhieuThuTienPhongDao;
+
+public class Form_DT_MonthJDialog extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JPanel panel;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			Form_DT_MonthJDialog dialog = new Form_DT_MonthJDialog();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public Form_DT_MonthJDialog() {
+		setBounds(100, 100, 1000, 600);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+
+		panel = new JPanel();
+		panel.setBounds(10, 0, 960, 500);
+		contentPanel.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+	}
+	
+	public void loadDoanhThuThang(int thang, int nam) {
+		List<Object[]> list = PhieuThuTienPhongDao.getInstance().selectByThang(thang, nam);
+		DefaultCategoryDataset datos = new DefaultCategoryDataset();
+		double value = 0;
+		int str = 0;
+		for (Object[] objects : list) {
+			value = Double.valueOf(objects[0] + "");
+			str = Integer.valueOf(objects[1] + "");
+			datos.setValue(value, "Ngày " + str, "" + str);
+		}
+//		for (int i = 1; i <= 31; i++) {
+//			if (i == str) {
+//				datos.setValue(value, str + "", "" + str);
+//			} else {
+//				datos.setValue(0, i + "", i + "");
+//			}
+//		}
+		JFreeChart g = ChartFactory.createStackedBarChart3D("Doanh Thu", "Tháng " + thang + " Năm " + nam, "", datos,
+				PlotOrientation.VERTICAL, true, true, false);
+
+		ChartPanel p = new ChartPanel(g);
+		p.setMouseWheelEnabled(true);
+		p.setForeground(Color.blue);
+		p.setPreferredSize(new Dimension(960, 500));
+		panel.setLayout(new BorderLayout());
+		panel.add(p, BorderLayout.NORTH);
+		repaint();
+	}
+
+}

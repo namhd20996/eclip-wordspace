@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="school-dashboard-v2/src"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/dist/lib/jna-5.5.0.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/dist/lib/jna-platform-5.5.0.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/dist/lib/miglayout-4.0.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/dist/lib/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/dist/school-dashboard-v2.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/jna-5.5.0.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/jna-platform-5.5.0.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/miglayout-4.0.jar"/>
+	<classpathentry kind="lib" path="school-dashboard-v2/TimingFramework-0.55.jar"/>
+	<classpathentry kind="output" path="school-dashboard-v2/build/classes"/>
+</classpath>

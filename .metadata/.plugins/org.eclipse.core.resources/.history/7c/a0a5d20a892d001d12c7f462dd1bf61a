@@ -1,0 +1,13 @@
+package com.poly;
+
+public class MainClass {
+	public static void main(String[] args) {
+		MyThread mt = new MyThread();
+		Thread t1 = new Thread(mt);
+		Thread t2 = new Thread(mt);
+		t1.setPriority(Thread.MAX_PRIORITY);
+		t2.setPriority(Thread.MIN_PRIORITY);
+		t1.start();
+		t2.start();
+	}
+}

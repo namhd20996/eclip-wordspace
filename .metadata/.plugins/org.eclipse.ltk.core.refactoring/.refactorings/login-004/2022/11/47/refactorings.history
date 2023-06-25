@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;MyTextField.java&apos; to &apos;A_JavaThree_Final/src/view&apos;&#x0D;&#x0A;- Original project: &apos;login-004&apos;&#x0D;&#x0A;- Destination element: &apos;A_JavaThree_Final/src/view&apos;&#x0D;&#x0A;- Original element: &apos;com.raven.swing.textfield.MyTextField.java&apos;" description="Copy compilation unit" destination="=A_JavaThree_Final/src&lt;view" element1="/src&lt;com.raven.swing.textfield{MyTextField.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1668306332156" units="1" version="1.0"/>
+</session>

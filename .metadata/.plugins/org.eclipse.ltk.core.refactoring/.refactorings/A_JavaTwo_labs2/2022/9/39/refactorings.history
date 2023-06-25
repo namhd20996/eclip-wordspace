@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;view&apos; to &apos;view_bai1&apos;&#x0D;&#x0A;- Original project: &apos;A_JavaTwo_labs2&apos;&#x0D;&#x0A;- Original element: &apos;A_JavaTwo_labs2/src/view&apos;&#x0D;&#x0A;- Renamed element: &apos;A_JavaTwo_labs2/src/view_bai1&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;view&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;view" name="view_bai1" qualified="false" references="true" stamp="1663580558552" textual="false" version="1.0"/>
+</session>

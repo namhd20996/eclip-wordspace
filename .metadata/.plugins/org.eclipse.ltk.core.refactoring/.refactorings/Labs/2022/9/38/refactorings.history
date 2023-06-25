@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Data.java&apos; to &apos;A_Final_JavaTwo/src/model&apos;&#x0D;&#x0A;- Original project: &apos;Labs&apos;&#x0D;&#x0A;- Destination element: &apos;A_Final_JavaTwo/src/model&apos;&#x0D;&#x0A;- Original element: &apos;labs6_bai3.Data.java&apos;" description="Copy compilation unit" destination="=A_Final_JavaTwo/src&lt;model" element1="/src&lt;labs6_bai3{Data.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1662993302829" units="1" version="1.0"/>
+</session>

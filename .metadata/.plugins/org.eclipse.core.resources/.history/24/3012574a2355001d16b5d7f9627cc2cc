@@ -1,0 +1,91 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+
+public class LoginForm extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JLabel lbl_IMG;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			LoginForm dialog = new LoginForm();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public LoginForm() {
+		setBounds(100, 100, 759, 533);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+
+		JPanel panel_left = new JPanel();
+		panel_left.setBackground(new Color(255, 255, 255));
+		panel_left.setBounds(0, 0, 409, 533);
+		contentPanel.add(panel_left);
+		panel_left.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("UNIQUE");
+		lblNewLabel_1.setForeground(new Color(255, 0, 0));
+		lblNewLabel_1.setFont(new Font("Zilla Slab SemiBold", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(10, 11, 74, 25);
+		panel_left.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_1_1 = new JLabel("DEVELOPER");
+		lblNewLabel_1_1.setForeground(new Color(0, 128, 255));
+		lblNewLabel_1_1.setFont(new Font("Zilla Slab SemiBold", Font.PLAIN, 16));
+		lblNewLabel_1_1.setBounds(80, 11, 108, 25);
+		panel_left.add(lblNewLabel_1_1);
+
+		lbl_IMG = new JLabel("");
+//		lbl_IMG.setIcon(new ImageIcon(LoginForm.class.getResource("/view/undraw_building_websites_i78t.png")));
+		lbl_IMG.setBounds(0, 47, 409, 486);
+		panel_left.add(lbl_IMG);
+
+		ImageIcon icon = new ImageIcon(getClass().getResource("/view/undraw_building_websites_i78t.png"));
+		Image img = XImage.resize(icon.getImage(), 409, 486);
+		this.lbl_IMG.setIcon(new ImageIcon(img));
+
+		JPanel panel_Right = new JPanel();
+		panel_Right.setBackground(new Color(0, 128, 255));
+		panel_Right.setBounds(409, -30, 350, 563);
+		contentPanel.add(panel_Right);
+		panel_Right.setLayout(null);
+
+		JLabel label = new JLabel("New label");
+		label.setBounds(151, 5, 48, 14);
+		panel_Right.add(label);
+
+		JLabel lblNewLabel = new JLabel("X");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(302, 32, 48, 33);
+		panel_Right.add(lblNewLabel);
+		this.setUndecorated(true);
+	}
+}
